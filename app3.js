@@ -15,8 +15,10 @@ console.log('password: ' , password)
 console.log('IV: ' , initVector.toString('hex'))
 
 
-// let en = encryptAES('prasanna', password, salt, initVector)
-// console.log('EncrypteD: ' , en)
+let en = encryptAES('prasanna', password, salt, initVector)
+console.log('EncrypteD: ' , en)
+
+//https://salesforce.stackexchange.com/questions/384953/encrypt-in-marketing-cloud-decrypt-in-salesforce
 
 function encryptAES(data, password, salt, initVector) {
     // Generate key

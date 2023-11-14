@@ -32,9 +32,18 @@
     set @initVector = '<set-in-env>' 
     set @salt = '<set-in-env>' 
     IF NOT EMPTY(@enc) THEN 
-    set @decStr = DecryptSymmetric(@enc, "aes", @null, @password, @null, @salt, @null,
-    @initVector) 
-    set @decStr = concat('Decrypted String: ' , @decStr) ENDIF ]%%
+        set @decStr = DecryptSymmetric(@enc, "aes", @null, @password, @null, @salt, @null,
+        @initVector) 
+        set @decStr = concat('Decrypted String: ' , @decStr) 
+    ENDIF
+
+
+    /* outputline(concat(
+        'Hardcoded decoding: '
+        , DecryptSymmetric('<ciphertext>', "aes", @null, '<password>', @null, '<salt>', @null, '<iv>')
+    )) */
+
+    ]%%
 
     <script runat="server">
       }catch (e) {
