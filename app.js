@@ -1,3 +1,8 @@
+// password - zoetis
+// iv - b1b68fd39f804362469e8fbe3a85c3df
+// salt - 2b8869f12dd9d562
+
+// Generate IV using openssl rand -hex 16 & salt using openssl rand -hex 8
 
 // import { PBKDF2, AES, enc, mode, pad, algo } from 'crypto-js';
 import CryptoJS from 'crypto-js';
@@ -14,9 +19,9 @@ const app = express();
 app.use(bodyParser.json());
 var jsonParser = bodyParser.json();
 const port = process.env.PORT || 3000;
-const password = process.env.password || 'fresh'
-const initVector = process.env.iv || '4963b7334a46352623252955df21d7f3'
-const salt = process.env.salt || 'e0cf1267f564b362'
+const password = process.env.password || 'zoetis'
+const initVector = process.env.iv || 'b1b68fd39f804362469e8fbe3a85c3df'
+const salt = process.env.salt || '2b8869f12dd9d562'
 
 // Encrypting the string using AES
 // const encAES = encryptAES(str, password, salt, initVector);
