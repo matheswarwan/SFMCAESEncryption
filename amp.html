@@ -32,9 +32,18 @@
     set @initVector = '3944a5680c2e80ef12adc728c0acc926' 
     set @salt = '2b8869f12dd9d562' 
     IF NOT EMPTY(@enc) THEN 
-    set @decStr = DecryptSymmetric(@enc, "aes", @null, @password, @null, @salt, @null,
-    @initVector) 
-    set @decStr = concat('Decrypted String: ' , @decStr) ENDIF ]%%
+        set @decStr = DecryptSymmetric(@enc, "aes", @null, @password, @null, @salt, @null,
+        @initVector) 
+        set @decStr = concat('Decrypted String: ' , @decStr) 
+    ENDIF
+
+
+    /* outputline(concat(
+        'Hardcoded decoding: '
+        , DecryptSymmetric('bfHMgljk/BpHudryDHranBLlEOZevJQvEH7Wj+nZxHNFYFHliBP+Bg9Esb61ZxiJ2AMRpGIknGaWPvvN1QIeUw==', "aes", @null, 'anypasswordvalue', @null, '701e6a98ec6e4f51', @null, 'c4a89623cbca32fa0a9d077569975fbc')
+    )) */
+
+    ]%%
 
     <script runat="server">
       }catch (e) {
