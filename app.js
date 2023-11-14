@@ -1,3 +1,8 @@
+// password - <set-in-env>
+// iv - <set-in-env>
+// salt - <set-in-env>
+
+// Generate IV using openssl rand -hex 16 & salt using openssl rand -hex 8
 
 // import { PBKDF2, AES, enc, mode, pad, algo } from 'crypto-js';
 import CryptoJS from 'crypto-js';
