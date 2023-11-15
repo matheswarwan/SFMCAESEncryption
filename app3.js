@@ -47,6 +47,7 @@ app.post('/encrypt', jsonParser, async(req,res) => {
     
     encAES = encryptAES(sk, password, salt, initVector);
     result['encryptedString'] = encAES.toString();
+    console.log('------------ /encrypt ENDS ------------');
     res.status(200).send(result);
 });
 
