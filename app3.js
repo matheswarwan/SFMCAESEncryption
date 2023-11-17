@@ -38,15 +38,18 @@ app.post('/encrypt', jsonParser, async(req,res) => {
     console.log('------------ /encrypt BEGIN ------------');
     let result = {}, encAES;
     let sk = req.body?.sk; 
+    console.log('Payload received ' , sk)
     if(sk == undefined) {
         console.log('[/encrypt]: Bad request');
         result['error'] = 'Subscriber Key (sk) not found in request';
+        console.log('response  ' , result);
         res.status(400).send(result);
         return; 
     }
     
     encAES = encryptAES(sk, password, salt, initVector);
     result['encryptedString'] = encAES.toString();
+    console.log('response  ' , result);
     console.log('------------ /encrypt ENDS ------------');
     res.status(200).send(result);
 });
