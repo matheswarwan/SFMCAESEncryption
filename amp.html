@@ -17,7 +17,7 @@
       crossorigin="anonymous"
     />
     <!-- 
-        https://<your-subdomain>.pub.sfmc-content.com/dkeyxbaghkz?f=amp.html&t=0918-2604-3d08-597c-9190-5d0a-b547-1dcd-7e5a.ngrok-free.app
+        https://<your-subdomain>.pub.sfmc-content.com/dkeyxbaghkz?f=amp.html&t=c63d-2604-3d08-597c-9190-cc01-d14f-7c9e-5553.ngrok-free.app
     -->
   </head>
 
@@ -28,12 +28,13 @@
     </script>
 
     %%[ set @enc = RequestParameter('encStr'); 
-    set @password = '<set-in-env>' 
-    set @initVector = '<set-in-env>' 
-    set @salt = '<set-in-env>' 
+    set @password = IIF(empty(RequestParameter('password')) , '<set-in-env>' , RequestParameter('password'))
+    set @iv = IIF(empty(RequestParameter('iv')) , '<set-in-env>' , RequestParameter('iv'))
+    set @salt = IIF(empty(RequestParameter('salt')) , '<set-in-env>' , RequestParameter('salt'))
+    
     IF NOT EMPTY(@enc) THEN 
         set @decStr = DecryptSymmetric(@enc, "aes", @null, @password, @null, @salt, @null,
-        @initVector) 
+        @iv) 
         set @decStr = concat('Decrypted String: ' , @decStr) 
     ENDIF
 
@@ -59,6 +60,39 @@
       <form action="%%=RequestParameter('PAGEURL')=%%" method="post">
         <section class="container">
           <div class="mb-3">
+            <label for="" class="form-label">Password</label>
+            <input
+              type="text"
+              class="form-control"
+              name="password"
+              id="password"
+              aria-describedby="helpId"
+              placeholder="Enter Password here"
+              value="%%=v(@password)=%%"
+            />
+
+            <label for="" class="form-label">Init Vector</label>
+            <input
+              type="text"
+              class="form-control"
+              name="iv"
+              id="iv"
+              aria-describedby="helpId"
+              placeholder="Enter iv here"
+              value="%%=v(@iv)=%%"
+            />
+
+            <label for="" class="form-label">Salt</label>
+            <input
+              type="text"
+              class="form-control"
+              name="salt"
+              id="salt"
+              aria-describedby="helpId"
+              placeholder="Enter Salt here"
+              value="%%=v(@salt)=%%"
+            />
+
             <label for="" class="form-label">Encrypted String</label>
             <input
               type="text"
